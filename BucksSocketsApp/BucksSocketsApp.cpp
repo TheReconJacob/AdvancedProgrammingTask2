@@ -127,90 +127,8 @@ int main(int argc, char* argv[]) {
 	else
 		cout << "listen() is OK, I'm waiting for connections..." << endl;
 
-
-	/* Comment out for Exercise 5
-	fromlen = sizeof(socket_type);
-	retval = getsockopt(serverSocket, SOL_SOCKET, SO_TYPE, (char *)&socket_type, &fromlen);
-	fromlen = sizeof(from);
-	acceptSocket = accept(serverSocket, (SOCKADDR *)&from, &fromlen);
-
-	//acceptSocket = accept(serverSocket, NULL,NULL);
-	if (acceptSocket == INVALID_SOCKET){
-		cout <<  "accept failed: " << WSAGetLastError() << endl;
-		WSACleanup();
-		return -1;
-	}
-	retval = getnameinfo((SOCKADDR *)&from,
-					  fromlen,
-					  hoststr,
-					  NI_MAXHOST,
-					  servstr,
-					  NI_MAXSERV,
-					  NI_NUMERICHOST | NI_NUMERICSERV);
-	if (retval != 0){
-			 cout <<  "getnameinfo failed: " << retval << endl;
-			WSACleanup();
-			 return -1;
-	}
-	cout << "Accepted connection from host " <<  hoststr << " and port " << servstr << endl;
-	cout << "Accepted connection" << endl;
-	*/
-
-
-	/*
-		// Exercise 1
-		int bytesSent;
-		char buffer[200]= "";
-		int bytesRecv = SOCKET_ERROR;
-		bytesRecv = recv(acceptSocket, buffer, 200, 0);
-		if (bytesRecv == SOCKET_ERROR)
-			cout << "Server: recv() error " << WSAGetLastError() << endl;
-		else{
-			cout << "Server: recv() is OK." << endl;
-			cout << "Server: Received data is: " <<  buffer << endl;
-			cout << "Server: Bytes received: " << bytesRecv << endl;
-		}
-
-		// Exercise 2
-		char sendBuffer[200] = "Message Received";
-		cout << "Server: Sending some test data to client..." << endl;
-		bytesSent = send(acceptSocket, sendBuffer, strlen(sendBuffer), 0);
-		if (bytesSent == SOCKET_ERROR)
-			cout << "Server: send() error " << WSAGetLastError() << endl;
-		else{
-			cout << "Server: send() is OK." << endl;
-			cout << "Server: Bytes Sent: " << bytesSent << endl;
-		}
-	*/
-	/*
-		// Exercise 3
-		int bytesSent;
-		int bytesRecv = SOCKET_ERROR;
-		char buffer[200]= "";
-		while(1){
-			bytesRecv = recv(acceptSocket, buffer, 200, 0);
-			if (bytesRecv == SOCKET_ERROR)
-				cout << "Server: recv() error " << WSAGetLastError() << endl;
-			else{
-				cout << "Server: recv() is OK." << endl;
-				cout << "Server: Received data is: " <<  buffer << endl;
-				cout << "Server: Bytes received: " << bytesRecv << endl;
-			}
-
-			char sendBuffer[200] = "Message Received";
-
-			cout << "Server: Sending some test data to client..." << endl;
-			bytesSent = send(acceptSocket, sendBuffer, strlen(sendBuffer), 0);
-			if (bytesSent == SOCKET_ERROR)
-				cout << "Server: send() error " << WSAGetLastError() << endl;
-			else{
-				cout << "Server: send() is OK." << endl;
-				cout << "Server: Bytes Sent: " << bytesSent << endl;
-			}
-		}
-	*/
-	/*
-	// Exercise 4
+	//Exercise
+	acceptSocket = accept(serverSocket, NULL, NULL);
 	int bytesSent;
 	int bytesRecv = SOCKET_ERROR;
 	char buffer[200]= "";
@@ -219,44 +137,31 @@ int main(int argc, char* argv[]) {
 		if (bytesRecv == SOCKET_ERROR)
 			cout << "Server: recv() error " << WSAGetLastError() << endl;
 		else{
-			cout << "Server: recv() is OK." << endl;
-			cout << "Server: Received data is: " <<  buffer << endl;
-			cout << "Server: Bytes received: " << bytesRecv << endl;
+			//cout << "Server: recv() is OK." << endl;
+			cout << "From Client: " <<  buffer << endl;
+			//cout << "Server: Bytes received: " << bytesRecv << endl;
 		}
 
-		if (strcmp(buffer,"SHUTDOWN")== 0){
+		if (strcmp(buffer,"QUIT")== 0){
 			break;
 		}
 
 
-		char sendBuffer[200] = "Message Received";
+		char sendBuffer[200];
 
-		cout << "Server: Sending some test data to client..." << endl;
+		cout << "Enter your message: ";
+
+		cin.getline(sendBuffer, 200);
 		bytesSent = send(acceptSocket, sendBuffer, strlen(sendBuffer), 0);
 		if (bytesSent == SOCKET_ERROR)
 			cout << "Server: send() error " << WSAGetLastError() << endl;
 		else{
-			cout << "Server: send() is OK." << endl;
-			cout << "Server: Bytes Sent: " << bytesSent << endl;
+			//cout << "Server: send() is OK." << endl;
+			// cout << "Server: Bytes Sent: " << bytesSent << endl;
+			cout << "You sent: " << sendBuffer << endl;
 		}
 	}
-*/
 
-// Exercise 5
-	DWORD threadId;
-	while (1) {
-		acceptSocket = accept(serverSocket, NULL, NULL);
-		if (acceptSocket == INVALID_SOCKET) {
-			cout << stderr << " accept failed: " << WSAGetLastError() << endl;
-			return -1;
-		}
-		else {
-			cout << "Server: Client Connected!" << endl;
-			// CreateThread(NULL,0,ServerThread,(LPVOID)acceptSocket,0,&threadId);
-			// Exercise 6
-			CreateThread(NULL, 0, ServerThreadData, (LPVOID)acceptSocket, 0, &threadId);
-		}
-	}
 	system("pause");
 	WSACleanup();
 

@@ -1,1 +1,2 @@
 C:\Users\jvt05\Documents\BucksSocketsAndClientApp\BucksClientApp\Debug\BucksClientApp.exe
+C:\Users\jvt05\Documents\AdvancedProgrammingTask2\BucksClientApp\Debug\BucksClientApp.exe

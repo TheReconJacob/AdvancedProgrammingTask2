@@ -54,75 +54,21 @@ int _tmain(int argc, _TCHAR* argv[]) {
 		cout << "Client: Can start sending and receiving data..." << endl;
 	}
 
-	/*
-		// Exercise 1
-		int byteCount = SOCKET_ERROR;
-		char buffer[200];
-		cout << "Enter your message ";
-		cin.getline(buffer,200);
-		byteCount = send(clientSocket, buffer,200, 0);
-		if(byteCount == SOCKET_ERROR){
-			cout << "Client: send() error " <<  WSAGetLastError() << endl;
-		}
-		else{
-			cout << "Client: sent " <<  byteCount << " bytes" << endl;
-		}
 
-		// Exercise 2
-		char receiveBuffer[200]="";
-		byteCount = recv(clientSocket, receiveBuffer, 200, 0);
-		if (byteCount == 0 || byteCount == WSAECONNRESET){
-			cout << "Client: Connection Closed." << endl;
-		}
-		if (byteCount < 0){
-			cout << "Client: error " << WSAGetLastError() << endl;
-		}
-		else {
-			cout << "From Server :  " << receiveBuffer << endl;
-		}
-	*/
-	/*
-		// Exercise 3
-	   int byteCount = SOCKET_ERROR;
-	   char buffer[200];
-	   while(1){
-			cout << "Enter your message ";
-			cin.getline(buffer,200);
-			byteCount = send(clientSocket, buffer,200, 0);
-			if(byteCount == SOCKET_ERROR){
-				cout << "Client: send() error " <<  WSAGetLastError() << endl;
-			}
-			else{
-				cout << "Client: sent " <<  byteCount << " bytes" << endl;
-			}
-
-			char receiveBuffer[200]="";
-			byteCount = recv(clientSocket, receiveBuffer, 200, 0);
-			if (byteCount == 0 || byteCount == WSAECONNRESET){
-				cout << "Client: Connection Closed." << endl;
-			}
-			if (byteCount < 0){
-				cout << "Client: error " << WSAGetLastError() << endl;
-			}
-			else {
-				cout << "From Server :  " << receiveBuffer << endl;
-			}
-		}
-	*/
-	/*
-		// Exercise 4
+		// Exercise
 		int byteCount = SOCKET_ERROR;
 		char buffer[200];
 		while(1){
-			cout << "Enter your message ";
+			cout << "Enter your message: ";
 			cin.getline(buffer,200);
-			byteCount = send(clientSocket, buffer,200, 0);
+			byteCount = send(clientSocket, buffer, 200, 0);
 			if(byteCount == SOCKET_ERROR){
 				cout << "Client: send() error " <<  WSAGetLastError() << endl;
 			}
 			else{
-				cout << "Client: sent " <<  byteCount << " bytes" << endl;
-				if (strcmp(buffer,"SHUTDOWN")== 0){
+				//cout << "Client: sent " <<  byteCount << " bytes" << endl;
+				cout << "You sent: " << buffer << endl;
+				if (strcmp(buffer,"QUIT")== 0){
 					break;
 				}
 			}
@@ -136,29 +82,9 @@ int _tmain(int argc, _TCHAR* argv[]) {
 				cout << "Client: error " << WSAGetLastError() << endl;
 			}
 			else {
-				cout << "From Server :  " << receiveBuffer << endl;
+				cout << "From Server: " << receiveBuffer << endl;
 			}
 		}
-	*/
-	// Exercise 6
-	Data data;
-	int byteCount = SOCKET_ERROR;
-	while (1) {
-		byteCount = recv(clientSocket, (char*)&data, sizeof(Data), 0);
-		if (byteCount == 0 || byteCount == WSAECONNRESET) {
-			cout << "Client: Connection Closed." << endl;
-			break;
-		}
-		if (byteCount < 0) {
-			cout << "Client: error " << WSAGetLastError() << endl;
-			break;
-		}
-		else {
-			cout << "Name :  " << data.name << endl;
-			cout << "Health : " << data.health << endl;
-
-		}
-	}
 
 
 	system("pause");
