@@ -5,14 +5,6 @@
 
 using namespace std;
 
-class Data {
-public:
-	int health;
-	char name[50];
-};
-
-
-
 int _tmain(int argc, _TCHAR* argv[]) {
 	SOCKET clientSocket;
 	int port = 55555;

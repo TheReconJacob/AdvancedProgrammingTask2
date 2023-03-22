@@ -5,38 +5,6 @@
 
 using namespace std;
 
-class Data {
-public:
-	int health;
-	char name[50];
-};
-
-DWORD WINAPI ServerThreadData(LPVOID lpParam) {
-	SOCKET socket = (SOCKET)lpParam;
-	int byteCount;
-	Data data;
-	data.health = 100;
-	strcpy_s(data.name, "Master Chief");
-	while (1) {
-		Sleep(1000);
-		if (socket != INVALID_SOCKET) {
-			data.health++;
-			byteCount = send(socket, (char*)&data, sizeof(Data), 0);
-			if (byteCount == SOCKET_ERROR) {
-				cout << "Server send error " << WSAGetLastError() << endl;
-				closesocket(socket);
-				return -1;
-			}
-			else {
-				cout << "Server: sent " << byteCount << " bytes" << endl;
-			}
-		}
-	}
-	closesocket(socket);
-	return 0;
-}
-
-
 DWORD WINAPI ServerThread(LPVOID lpParam) {
 	SOCKET socket = (SOCKET)lpParam;
 	int byteCount;
