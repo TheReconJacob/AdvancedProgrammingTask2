@@ -1,2 +1,4 @@
-﻿  Client.cpp
+﻿  BucksClientApp.cpp
+  Comms.cpp
+  Generating Code...
   BucksClientApp.vcxproj -> C:\Users\jvt05\Documents\AdvancedProgrammingTask2\BucksClientApp\Debug\BucksClientApp.exe

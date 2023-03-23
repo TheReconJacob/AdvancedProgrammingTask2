@@ -50,14 +50,12 @@ void Client::SendAndReceiveFromServer()
 			throw("Client: send() error " + WSAGetLastError());
 		}
 		else {
-			//cout << "Client: sent " <<  byteCount << " bytes" << endl;
 			std::cout << "You sent: " << sendBuffer << std::endl;
 			if (strcmp(sendBuffer, "QUIT") == 0) {
 				break;
 			}
 		}
 
-		char receiveBuffer[200] = "";
 		byteCount = recv(clientSocket, receiveBuffer, 200, 0);
 		if (byteCount == 0 || byteCount == WSAECONNRESET) {
 			std::cout << "Client: Connection Closed." << std::endl;

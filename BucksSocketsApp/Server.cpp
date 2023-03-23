@@ -71,7 +71,7 @@ void Server::ReceiveAndSendToClient()
 		std::cout << "Enter your message: ";
 
 		std::cin.getline(sendBuffer, 200);
-		bytesSent = send(acceptSocket, sendBuffer, strlen(sendBuffer), 0);
+		bytesSent = send(acceptSocket, sendBuffer, 200, 0);
 		if (bytesSent == SOCKET_ERROR)
 			throw("Server: send() error " + WSAGetLastError());
 		else {

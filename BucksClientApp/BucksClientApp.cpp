@@ -24,5 +24,4 @@ int _tmain(int argc, _TCHAR* argv[]) {
 	system("pause");
 	WSACleanup();
 	return 0;
-
 }
