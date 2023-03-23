@@ -9,7 +9,7 @@ public:
 
 	int ClientSocketSetup();
 
-	int ClientServiceSetup();
+	void ServiceSetup();
 
 	void SendAndReceiveFromServer();
 };

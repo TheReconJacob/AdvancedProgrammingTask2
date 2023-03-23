@@ -10,7 +10,7 @@ int _tmain(int argc, _TCHAR* argv[]) {
 	comms->ServiceSetup();
 	client->WsaerrCheck();
 	client->ClientSocketSetup();
-	client->ClientServiceSetup();
+	client->ServiceSetup();
 	client->SendAndReceiveFromServer();
 
 	system("pause");

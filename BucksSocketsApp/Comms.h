@@ -12,5 +12,5 @@ public:
 	int wsaerr = WSAStartup(wVersionRequested, &wsaData);
 	sockaddr_in service;
 
-	void ServiceSetup();
+	virtual void ServiceSetup();
 };

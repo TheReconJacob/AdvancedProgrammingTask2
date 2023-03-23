@@ -68,7 +68,7 @@ int Server::ServerSocketSetup()
 	}
 }
 
-int Server::ServerServiceSetup()
+void Server::ServiceSetup()
 {
 	service.sin_family = AF_INET;
 	InetPton(AF_INET, _T("127.0.0.1"), &service.sin_addr.s_addr);
@@ -77,7 +77,6 @@ int Server::ServerServiceSetup()
 		std::cout << "bind() failed: " << WSAGetLastError() << std::endl;
 		closesocket(serverSocket);
 		WSACleanup();
-		return 0;
 	}
 	else {
 		std::cout << "bind() is OK!" << std::endl;

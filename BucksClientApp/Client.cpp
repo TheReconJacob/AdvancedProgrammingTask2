@@ -29,7 +29,7 @@ int Client::ClientSocketSetup()
 	}
 }
 
-int Client::ClientServiceSetup()
+void Client::ServiceSetup()
 {
 	service.sin_family = AF_INET;
 	InetPton(AF_INET, _T("127.0.0.1"), &service.sin_addr.s_addr);
@@ -37,7 +37,6 @@ int Client::ClientServiceSetup()
 	if (connect(clientSocket, (SOCKADDR*)&service, sizeof(service)) == SOCKET_ERROR) {
 		std::cout << "Client: connect() - Failed to connect." << std::endl;
 		WSACleanup();
-		return 0;
 	}
 	else {
 		std::cout << "Client: connect() is OK." << std::endl;

@@ -10,7 +10,7 @@ int main(int argc, char* argv[]) {
 	comms->ServiceSetup();
 	server->WsaerrCheck();
 	server->ServerSocketSetup();
-	server->ServerServiceSetup();
+	server->ServiceSetup();
 	server->ReceiveAndSendToClient();
 
 	system("pause");

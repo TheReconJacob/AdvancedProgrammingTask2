@@ -11,7 +11,7 @@ public:
 
 	int WsaerrCheck();
 	int ServerSocketSetup();
-	int ServerServiceSetup();
+	void ServiceSetup();
 	void ReceiveAndSendToClient();
 };
 
