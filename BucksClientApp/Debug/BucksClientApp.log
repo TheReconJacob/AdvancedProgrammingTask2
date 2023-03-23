@@ -1,8 +1,7 @@
 ﻿  BucksClientApp.cpp
   Client.cpp
-  Comms.cpp
   Generating Code...
+C:\Users\jvt05\Documents\AdvancedProgrammingTask2\BucksClientApp\Client.cpp(46): warning C4715: 'Client::ClientServiceSetup': not all control paths return a value
 C:\Users\jvt05\Documents\AdvancedProgrammingTask2\BucksClientApp\Client.cpp(30): warning C4715: 'Client::ClientSocketSetup': not all control paths return a value
 C:\Users\jvt05\Documents\AdvancedProgrammingTask2\BucksClientApp\Client.cpp(16): warning C4715: 'Client::WsaerrCheck': not all control paths return a value
-C:\Users\jvt05\Documents\AdvancedProgrammingTask2\BucksClientApp\Client.cpp(46): warning C4715: 'Client::ClientServiceSetup': not all control paths return a value
   BucksClientApp.vcxproj -> C:\Users\jvt05\Documents\AdvancedProgrammingTask2\BucksClientApp\Debug\BucksClientApp.exe

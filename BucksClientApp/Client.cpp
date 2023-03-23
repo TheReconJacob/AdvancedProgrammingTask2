@@ -31,10 +31,10 @@ int Client::ClientSocketSetup()
 
 int Client::ClientServiceSetup()
 {
-	clientService.sin_family = AF_INET;
-	InetPton(AF_INET, _T("127.0.0.1"), &clientService.sin_addr.s_addr);
-	clientService.sin_port = htons(port);
-	if (connect(clientSocket, (SOCKADDR*)&clientService, sizeof(clientService)) == SOCKET_ERROR) {
+	service.sin_family = AF_INET;
+	InetPton(AF_INET, _T("127.0.0.1"), &service.sin_addr.s_addr);
+	service.sin_port = htons(port);
+	if (connect(clientSocket, (SOCKADDR*)&service, sizeof(service)) == SOCKET_ERROR) {
 		std::cout << "Client: connect() - Failed to connect." << std::endl;
 		WSACleanup();
 		return 0;
@@ -47,19 +47,17 @@ int Client::ClientServiceSetup()
 
 void Client::SendAndReceiveFromServer()
 {
-	int byteCount = SOCKET_ERROR;
-	char buffer[200];
 	while (1) {
 		std::cout << "Enter your message: ";
-		std::cin.getline(buffer, 200);
-		byteCount = send(clientSocket, buffer, 200, 0);
+		std::cin.getline(sendBuffer, 200);
+		byteCount = send(clientSocket, sendBuffer, 200, 0);
 		if (byteCount == SOCKET_ERROR) {
 			std::cout << "Client: send() error " << WSAGetLastError() << std::endl;
 		}
 		else {
 			//cout << "Client: sent " <<  byteCount << " bytes" << endl;
-			std::cout << "You sent: " << buffer << std::endl;
-			if (strcmp(buffer, "QUIT") == 0) {
+			std::cout << "You sent: " << sendBuffer << std::endl;
+			if (strcmp(sendBuffer, "QUIT") == 0) {
 				break;
 			}
 		}

@@ -4,8 +4,6 @@
 #include <tchar.h>
 #include "Client.h"
 
-using namespace std;
-
 int _tmain(int argc, _TCHAR* argv[]) {
 	Comms* comms = new Comms;
 	Client* client = new Client;
