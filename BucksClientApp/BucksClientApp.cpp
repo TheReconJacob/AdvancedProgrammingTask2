@@ -8,10 +8,18 @@ int _tmain(int argc, _TCHAR* argv[]) {
 	Comms* comms = new Comms;
 	Client* client = new Client;
 	comms->ServiceSetup();
-	client->WsaerrCheck();
-	client->ClientSocketSetup();
-	client->ServiceSetup();
-	client->SendAndReceiveFromServer();
+
+	try {
+		client->WsaerrCheck();
+		client->ClientSocketSetup();
+		client->ServiceSetup();
+		client->SendAndReceiveFromServer();
+	}
+	catch (const char* exception) {
+		std::cout << exception << std::endl;
+		WSACleanup();
+		return 0;
+	}
 
 	system("pause");
 	WSACleanup();

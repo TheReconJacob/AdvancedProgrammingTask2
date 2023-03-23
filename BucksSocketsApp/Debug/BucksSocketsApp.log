@@ -1,7 +1,2 @@
-﻿  BucksSocketsApp.cpp
-  Comms.cpp
-  Server.cpp
-  Generating Code...
-C:\Users\jvt05\Documents\AdvancedProgrammingTask2\BucksSocketsApp\Server.cpp(69): warning C4715: 'Server::ServerSocketSetup': not all control paths return a value
-C:\Users\jvt05\Documents\AdvancedProgrammingTask2\BucksSocketsApp\Server.cpp(55): warning C4715: 'Server::WsaerrCheck': not all control paths return a value
+﻿  Server.cpp
   BucksSocketsApp.vcxproj -> C:\Users\jvt05\Documents\AdvancedProgrammingTask2\BucksSocketsApp\Debug\BucksSocketsApp.exe

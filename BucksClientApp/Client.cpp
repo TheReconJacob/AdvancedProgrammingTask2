@@ -3,11 +3,10 @@
 #include <iostream>
 #include <tchar.h>
 
-int Client::WsaerrCheck()
+void Client::WsaerrCheck()
 {
 	if (wsaerr != 0) {
-		std::cout << "The Winsock dll not found!" << std::endl;
-		return 0;
+		throw("The Winsock dll not found!");
 	}
 	else {
 		std::cout << "The Winsock dll found!" << std::endl;
@@ -15,14 +14,12 @@ int Client::WsaerrCheck()
 	}
 }
 
-int Client::ClientSocketSetup()
+void Client::ClientSocketSetup()
 {
 	clientSocket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
 	clientSocket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
 	if (clientSocket == INVALID_SOCKET) {
-		std::cout << "Error at socket(): " << WSAGetLastError() << std::endl;
-		WSACleanup();
-		return 0;
+		throw("Error at socket(): " + WSAGetLastError());
 	}
 	else {
 		std::cout << "socket() is OK!" << std::endl;
@@ -35,8 +32,7 @@ void Client::ServiceSetup()
 	InetPton(AF_INET, _T("127.0.0.1"), &service.sin_addr.s_addr);
 	service.sin_port = htons(port);
 	if (connect(clientSocket, (SOCKADDR*)&service, sizeof(service)) == SOCKET_ERROR) {
-		std::cout << "Client: connect() - Failed to connect." << std::endl;
-		WSACleanup();
+		throw("Client: connect() - Failed to connect.");
 	}
 	else {
 		std::cout << "Client: connect() is OK." << std::endl;
@@ -51,7 +47,7 @@ void Client::SendAndReceiveFromServer()
 		std::cin.getline(sendBuffer, 200);
 		byteCount = send(clientSocket, sendBuffer, 200, 0);
 		if (byteCount == SOCKET_ERROR) {
-			std::cout << "Client: send() error " << WSAGetLastError() << std::endl;
+			throw("Client: send() error " + WSAGetLastError());
 		}
 		else {
 			//cout << "Client: sent " <<  byteCount << " bytes" << endl;
@@ -67,7 +63,7 @@ void Client::SendAndReceiveFromServer()
 			std::cout << "Client: Connection Closed." << std::endl;
 		}
 		if (byteCount < 0) {
-			std::cout << "Client: error " << WSAGetLastError() << std::endl;
+			throw("Client: error " + WSAGetLastError());
 		}
 		else {
 			std::cout << "From Server: " << receiveBuffer << std::endl;

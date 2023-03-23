@@ -5,9 +5,9 @@ class Client : public Comms
 public:
 	SOCKET clientSocket = INVALID_SOCKET;
 
-	int WsaerrCheck();
+	void WsaerrCheck();
 
-	int ClientSocketSetup();
+	void ClientSocketSetup();
 
 	void ServiceSetup();
 
