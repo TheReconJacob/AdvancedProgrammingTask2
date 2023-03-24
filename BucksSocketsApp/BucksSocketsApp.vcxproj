@@ -141,10 +141,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BucksSocketsApp.cpp" />
+    <ClCompile Include="Client.cpp" />
     <ClCompile Include="Comms.cpp" />
     <ClCompile Include="Server.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Client.h" />
     <ClInclude Include="Comms.h" />
     <ClInclude Include="Server.h" />
   </ItemGroup>

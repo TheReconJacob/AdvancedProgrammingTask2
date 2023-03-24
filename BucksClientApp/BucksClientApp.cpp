@@ -3,36 +3,52 @@
 #include "iostream"
 #include <tchar.h>
 #include "Client.h"
+#include "Server.h"
 
-#define TRUE 1
-#define FALSE 0
-#define enableClient TRUE
+#define CLIENT 0
+#define SERVER 1
+#define currentProgram CLIENT
 
 int _tmain() {
-	#ifdef enableClient
-	if (enableClient == FALSE)
-	{
-		std::cout << "Client has been disabled!" << std::endl;
-		return 0;
-	}
-	#endif
+	#ifdef currentProgram
 	Comms* comms = new Comms;
-	Client* client = new Client;
 	comms->ServiceSetup();
+	if (currentProgram == CLIENT)
+	{
+		//Client Side
+		Client* client = new Client;
 
-	try {
-		client->WsaerrCheck();
-		client->ClientSocketSetup();
-		client->ServiceSetup();
-		client->SendAndReceiveFromServer();
+		try {
+			client->WsaerrCheck();
+			client->ClientSocketSetup();
+			client->ServiceSetup();
+			client->SendAndReceiveFromServer();
+		}
+		catch (const char* exception) {
+			std::cout << exception << std::endl;
+			WSACleanup();
+			return 0;
+		}
 	}
-	catch (const char* exception) {
-		std::cout << exception << std::endl;
-		WSACleanup();
-		return 0;
-	}
+	else
+	{
+		//Server Side
+		Server* server = new Server;
 
+		try {
+			server->WsaerrCheck();
+			server->ServerSocketSetup();
+			server->ServiceSetup();
+			server->ReceiveAndSendToClient();
+		}
+		catch (const char* exception) {
+			std::cout << exception << std::endl;
+			WSACleanup();
+			return 0;
+		}
+	}
 	system("pause");
 	WSACleanup();
 	return 0;
+	#endif
 }
