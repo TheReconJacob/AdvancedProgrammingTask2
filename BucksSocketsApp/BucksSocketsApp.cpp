@@ -4,7 +4,19 @@
 #include <tchar.h>
 #include "Server.h"
 
-int main(int argc, char* argv[]) {
+#define TRUE 1
+#define FALSE 0
+#define enableServer TRUE
+
+
+int main() {
+	#ifdef enableServer
+	if (enableServer == FALSE)
+	{
+		std::cout << "Server has been disabled!" << std::endl;
+		return 0;
+	}
+	#endif
 	Comms* comms = new Comms;
 	Server* server = new Server;
 	comms->ServiceSetup();

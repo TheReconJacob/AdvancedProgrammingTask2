@@ -4,7 +4,18 @@
 #include <tchar.h>
 #include "Client.h"
 
-int _tmain(int argc, _TCHAR* argv[]) {
+#define TRUE 1
+#define FALSE 0
+#define enableClient TRUE
+
+int _tmain() {
+	#ifdef enableClient
+	if (enableClient == FALSE)
+	{
+		std::cout << "Client has been disabled!" << std::endl;
+		return 0;
+	}
+	#endif
 	Comms* comms = new Comms;
 	Client* client = new Client;
 	comms->ServiceSetup();
