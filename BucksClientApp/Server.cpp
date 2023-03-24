@@ -65,9 +65,6 @@ void Server::ReceiveAndSendToClient()
 			break;
 		}
 
-
-		char sendBuffer[200];
-
 		std::cout << "Enter your message: ";
 
 		std::cin.getline(sendBuffer, 200);

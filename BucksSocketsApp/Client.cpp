@@ -17,7 +17,6 @@ void Client::WsaerrCheck()
 void Client::ClientSocketSetup()
 {
 	clientSocket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
-	clientSocket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
 	if (clientSocket == INVALID_SOCKET) {
 		throw("Error at socket(): " + WSAGetLastError());
 	}
