@@ -43,6 +43,13 @@ void Client::SendAndReceiveFromServer()
 {
 	while (1) {
 		std::cout << "Enter your message: ";
+
+		//If I had more time, I would have wanted to find a way to make sure that I could send only the amount of bytes
+		//required for the message to be sent. There was previously code that allowed this to happen, but there was an
+		//issue where if I first typed a longer message, then a shorter one. It wouldn't clear the string and would just
+		//send out a version of the longer message with the beginning characters replaced with the characters of the second
+		//message.
+
 		std::cin.getline(sendBuffer, 200);
 		byteCount = send(clientSocket, sendBuffer, 200, 0);
 		if (byteCount == SOCKET_ERROR) {

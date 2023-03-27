@@ -9,6 +9,12 @@
 #define SERVER 1
 #define currentProgram CLIENT
 
+//Having the preprocessor directive means that I can have identical code run but function as the client or server
+//depending on the value of the directive. This would be incredibly useful and save having duplicate code if I figured
+//out how to have one solution configured to run the same code twice with a different value in the directive. However,
+//since there was no time for it, the actual purpose of the directive is impractical as it currently stands, and doesn't
+//prevent any duplicate code from being made since there is still another copy of the same project.
+
 int _tmain() {
 	#ifdef currentProgram
 	Comms* comms = new Comms;
